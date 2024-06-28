@@ -52,5 +52,17 @@ audio.addEventListener('ended',
     }
 );
 
+var random=document.querySelector('#random');
+random.addEventListener('click',
+    (e)=>{
+       var listitems=document.querySelectorAll('li')
+       var len=listitems.length;
+       var rnd=Math.floor(Math.random()*len);
+       playMusic(listitems[rnd]);
+    }
+);
+
+
+
             
         
