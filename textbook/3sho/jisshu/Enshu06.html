@@ -15,13 +15,17 @@
 let counter = 5;
 let disparea = document.getElementById("counterarea");
 let minus = function() {
+  if(counter>0){
     counter--;
     disparea.innerHTML = counter;
   }
+   
+}
 let plus = function() {
   counter++;
   disparea.innerHTML = counter;
 }
+
 </script>
   </body>
 </html>
