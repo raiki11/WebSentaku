@@ -20,10 +20,12 @@ let timerstart = function() {
   repeat = setTimeout('timermove()', 1000);
 }
 let timermove = function() {
-  //ここに、カウンターの値を調べて、0以下の場合はタイマーを止める処理を加える
+  if(counter>0){
     counter--;
     disparea.innerHTML = counter;
     repeat = setTimeout('timermove()', 1000);
+    }
+    
   }
 let minus = function() {
  //実習06から、解答済みの処理をコピーして貼り付ける！

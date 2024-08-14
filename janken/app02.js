@@ -1,4 +1,4 @@
-  /************************************
+/************************************
  ジャンケンゲームを作る（関数なし）
 *************************************/
 //＜ジャンケンの手の番号を設定＞
@@ -45,21 +45,31 @@ function janken(){
         }
     }
 
-    alert(getResultMsg(com,hum));
-    return getResult(com,hum);
-    let win=0;
-    let isLose=false;
-    while(!isLose){
-        let result=janken();
-        if(result==='結果はあいこでした'){
-            continue;
+    
+    //＜結果の判定＞
+    //結果（勝敗）を格納する変数「msgResult」を宣言。初期化のために0を代入
+    function getResult(com,hum){
+        //if文での判定。人間とコンピュータの手が一緒なら…
+        if(hum==com){
+            return'結果は「あいこ」。';        //結果の変数にあいこの文字列を格納
+        }else if(hum == GU && com == CHOKI || hum == CHOKI && com == PA || hum == PA && com == GU){
+            return'勝ったぞ、やったね';
+        }else{
+            return'負けた、ズコー'; 
         }
-        if(result==='勝ちました'){
-            win++;
-        }
-       alert('ただいま「'+win+'」勝です。');
-       continue;
     }
-    alert('連勝はストップです。記録は「'+win+'」勝でした');
-    isLose=true;
+
+    function getResultMsg(com,hum){
+            return getResult(com,hum)+'コンピューターが出したのは「'+getHandName(com)+'だったよ」';
+    }
+
+    let hum=getHumHand();
+    if(!hum){
+        alert('入力値をうまく認識できませんでした。ブラウザを再読み込みすると、もう一度挑戦できます');  //アラートで再読み込みの文章を表示
+    }else{
+        let com=getComHand();
+        alert(getResultMsg(com,hum))
+    }
+
 }
+janken();
