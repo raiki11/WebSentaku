@@ -1,37 +1,37 @@
 let button = document.getElementById('button');
 let form = document.getElementById('form');
-let textarea = document.getElementById('textarea');
+let texterea = document.getElementById('texterea');
 
-let maxTextNum=textarea.getAttribute('maxlength');
+//文字数制限
+let maxTextNum = texterea.getAttribute('maxTextNum');
+//残り時間
+let reminingTimeNum = 10;
 
-let reminingTimerNum=10;
-let textMessage=document.createElement('div');
-let parent = textarea.parentElement;
-parent.insertBefore(textMessage,textarea);
+//要素の追加
+let textMessage = document.createElement('div');
+let parent = texterea.parentElement;
+parent.insertBefore(textMessage, texterea);
 
-let timerMessage=document.createElement('div');
-parent.insertBefore(timerMessage,null);
-
-
-textarea.addEventListener('keyup', function(){
-    let currentTextNum=textarea.value.length;
-    textMessage.innerHTML='<p>あと「' +(maxTextNum - currentTextNum)
-    +'」文字を入力できます</p>';
+texterea.addEventListener('keyup', function () {
+    let currentTextNum = texterea.value.length;
+    textMessage.innerHTML = '<p>あと「' + (maxTextNum - currentTextNum) + '」文字入力できます。</p>';
 });
 
+//残り時間を表示する要素の追加
+let timeMessage = document.createElement('div');
+parent.insertBefore(timeMessage, null);
 
-button.addEventListener('click',function(){
+button.addEventListener('click', function () {
+    //フォームを表示
+    form.style.display = 'block';
 
-    let timerId=setInterval(function(){
-        timerMessage.innerHTML='<p>制限時間:'+reminingTimerNum+'秒</p>';
-        if(reminingTimerNum<=0){
+    //タイマー処理で残り時間を表示
+    let timerId = setInterval(function () {
+        timeMessage.innerHTML = '<p>制限時間' + reminingTimeNum + '秒</p>';
+        if (reminingTimeNum <= 0) {
             alert('制限時間終了');
             clearInterval(timerId);
         }
-        reminingTimerNum--;
-    },1000);
-    
-    form.style.display='block';
-
+        reminingTimeNum--;
+    }, 1000);
 });
-
